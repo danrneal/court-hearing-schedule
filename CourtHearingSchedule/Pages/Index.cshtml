@@ -1,0 +1,63 @@
+@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mt-5 text-center">Court Hearing Schedule</h1>
+<h3 class="text-center">@DateTime.Today.ToString("D")<h3>
+
+<div class="row justify-content-center">
+@if (Model.Hearings[0].Number == null)
+{
+    <form method="post">
+        <input type="hidden" name="type" value="start">
+        <input type="submit" value="Start Day" class="m-3 btn btn-secondary" />
+    </form>
+} else
+{
+    <form method="post">
+        <input type="hidden" name="type" value="reset">
+        <input type="submit" value="Reset Day" class="m-3 btn btn-secondary" />
+    </form>
+}
+    <a class="m-3 btn btn-secondary" asp-page="Create">New Hearing</a>
+</div>
+
+@foreach (var department in Model.Departments) {
+    <h5 class="mt-5 mb-3">Department @Html.DisplayFor(modelItem => department.Name)</h5>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Hearing #</th>
+                <th>Case #</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+@foreach (var hearing in Model.Hearings)
+{
+    @if (hearing.Department == department)
+    {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => hearing.DateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => hearing.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => hearing.Case.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => hearing.Type)
+                </td>
+            </tr>
+    }
+}
+        </tbody>
+    </table>
+}

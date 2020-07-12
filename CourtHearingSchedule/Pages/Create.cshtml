@@ -1,0 +1,45 @@
+@page
+@model CourtHearingSchedule.Pages.CreateModel
+
+@{
+    ViewData["Title"] = "Create Hearing";
+}
+
+<h3 class="mt-5">Create Hearing</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NewHearing.DepartmentId" class="control-label">Department</label>
+                <select asp-for="NewHearing.DepartmentId" class ="form-control" asp-items="ViewBag.DepartmentId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewHearing.DateTime" class="control-label"></label>
+                <select asp-for="NewHearing.DateTime" class="form-control" asp-items="ViewBag.TimeSlots"></select>
+                <span asp-validation-for="NewHearing.DateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewHearing.CaseId" class="control-label">Case Number</label>
+                <select asp-for="NewHearing.CaseId" class ="form-control" asp-items="ViewBag.CaseId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewHearing.Type" class="control-label"></label>
+                <input asp-for="NewHearing.Type" class="form-control" required />
+                <span asp-validation-for="NewHearing.Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
