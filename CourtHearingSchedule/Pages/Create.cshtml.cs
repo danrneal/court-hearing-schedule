@@ -64,21 +64,19 @@ namespace CourtHearingSchedule.Pages
             if (Hearings[0].Number != null)
             {
                 DateTime CurrentDateTime = DateTime.MinValue;
-                int HearingNumber = 0;
+                int HearingNumber = (TimeSlots.Times.IndexOf(NewHearing.DateTime.ToString("t")) + 1) * 1000;
                 foreach (Hearing h in Hearings)
                 {
-                    if (h.DateTime > NewHearing.DateTime)
+                    if (h.DepartmentId != NewHearing.DepartmentId)
+                    {
+                        continue;
+                    }
+
+                    if (h.Number > HearingNumber)
                     {
                         break;
                     }
-
-                    if (CurrentDateTime != h.DateTime)
-                    {
-                        CurrentDateTime = h.DateTime;
-                        HearingNumber = (TimeSlots.Times.IndexOf(h.DateTime.ToString("t")) + 1) * 1000;
-                    }
-
-                    if (h.DepartmentId == NewHearing.DepartmentId)
+                    else if (h.Number == HearingNumber)
                     {
                         HearingNumber++;
                     }
