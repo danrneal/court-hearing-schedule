@@ -4,10 +4,10 @@ This asp.net webapp displays a court hearing schedule and then assigns automated
 
 ## Set-up
 
-Navigate to the CourtHearingSchedule directory and run the restore command to set-up the project
+Navigate to the CourtHearingSchedule directory and build the project
 
 ```bash
-dotnet restore
+dotnet build
 ```
 
 ## Usage
