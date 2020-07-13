@@ -75,7 +75,7 @@ namespace CourtHearingSchedule.Pages
                     if (CurrentDateTime != h.DateTime)
                     {
                         CurrentDateTime = h.DateTime;
-                        HearingNumber = (HearingNumber / 1000 + 1) * 1000;
+                        HearingNumber = (TimeSlots.Times.IndexOf(h.DateTime.ToString("t")) + 1) * 1000;
                     }
 
                     if (h.DepartmentId == NewHearing.DepartmentId)

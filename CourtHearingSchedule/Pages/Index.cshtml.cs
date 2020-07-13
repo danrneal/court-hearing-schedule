@@ -65,7 +65,7 @@ namespace CourtHearingSchedule.Pages
                         if (CurrentDateTime != hearing.DateTime)
                         {
                             CurrentDateTime = hearing.DateTime;
-                            HearingNumber = (HearingNumber / 1000 + 1) * 1000;
+                            HearingNumber = (TimeSlots.Times.IndexOf(hearing.DateTime.ToString("t")) + 1) * 1000;
                         }
 
                         hearing.Number = HearingNumber;
