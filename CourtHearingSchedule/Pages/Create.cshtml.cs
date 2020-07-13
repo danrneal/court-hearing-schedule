@@ -21,17 +21,17 @@ namespace CourtHearingSchedule.Pages
         }
 
         public IList<Hearing> Hearings { get; set; }
-        public IList<SelectListItem> TimeSlots
+        public IList<SelectListItem> Times
         {
             get
             {
-                IList<SelectListItem> TimeSlots = new List<SelectListItem>();
-                TimeSlots.Add(new SelectListItem() { Text = "9:00 AM", Value = "9:00 AM" });
-                TimeSlots.Add(new SelectListItem() { Text = "10:00 AM", Value = "10:00 AM" });
-                TimeSlots.Add(new SelectListItem() { Text = "1:30 PM", Value = "1:30 PM" });
-                TimeSlots.Add(new SelectListItem() { Text = "2:30 PM", Value = "2:30 PM" });
+                IList<SelectListItem> Times = new List<SelectListItem>();
+                foreach (string Time in TimeSlots.Times)
+                {
+                    Times.Add(new SelectListItem() { Text = Time, Value = Time });
+                }
 
-                return TimeSlots;
+                return Times;
             }
         }
 
@@ -39,7 +39,7 @@ namespace CourtHearingSchedule.Pages
         {
             ViewData["CaseId"] = new SelectList(_context.Cases, "Id", "Number");
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name");
-            ViewData["TimeSlots"] = new SelectList(TimeSlots, "Value", "Text");
+            ViewData["TimeSlots"] = new SelectList(Times, "Value", "Text");
             return Page();
         }
 

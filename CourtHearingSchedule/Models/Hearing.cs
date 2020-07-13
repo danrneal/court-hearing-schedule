@@ -5,14 +5,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CourtHearingSchedule.Models
 {
+
+    public class TimeSlots
+    {
+        public static List<String> Times = new List<String>() { "9:00 AM", "10:00 AM", "11:00 AM", "1:30 PM", "2:30 PM" };
+    }
+
     public class HearingDateTime : ValidationAttribute
     {
         public override bool IsValid(object value)
         {
             DateTime dt = DateTime.Parse(Convert.ToString(value));
             String Time = dt.ToString("t");
-            List<String> TimeSlots = new List<String>() { "9:00 AM", "10:00 AM", "1:30 PM", "2:30 PM" };
-            return TimeSlots.Contains(Time);
+            return TimeSlots.Times.Contains(Time);
         }
     }
 

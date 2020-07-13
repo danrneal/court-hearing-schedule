@@ -32,4 +32,4 @@ Navigate to `http://127.0.0.1:5000` to see the app in action!
 
 You can reset the day to remove hearing numbers to start over. A sample sqlite database will be initialized automatically. To reset the database, simply delete and it will re-initialize to the sample data.
 
-If you wanted to add another valid time slot, all that would be required would be to add the time to the list in Models/Hearing.cs and in Pages/Create.cshtml.cs.
+If you wanted to add another valid time slot, all that would be required would be to add the time to the list in Models/Hearing.cs.
